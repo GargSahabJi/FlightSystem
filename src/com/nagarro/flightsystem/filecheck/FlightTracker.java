@@ -1,5 +1,5 @@
 /*
-* Class name: FindFlightList
+* Class name: FlightTracker
 *
 * Version info: jdk 1.8
 *
