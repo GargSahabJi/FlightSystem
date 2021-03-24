@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="javac Example" default="all" basedir=".">
+	<target name="compileExample1">
+		<javac srcdir="${src.dir}" destdir="${build.dir}"
+			includes="Maven Dependencies/**, bin/**, target/**" />
+	</target>
+</project>
