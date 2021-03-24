@@ -27,7 +27,7 @@ import com.nagarro.flightsystem.service.SearchAllFlight;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
-public class FindFlightList implements SearchAllFlight{
+public class FindFlight implements SearchAllFlight{
     static ArrayList<String> flightData;
     private String fileName;
     private String departureLocation;
@@ -43,7 +43,7 @@ public class FindFlightList implements SearchAllFlight{
      * @param flightDate
      * @param flightClass
      */
-    public FindFlightList(String fileName, String departureLocation, String arrivalLocaton, String flightDate,
+    public FindFlight(String fileName, String departureLocation, String arrivalLocaton, String flightDate,
             String flightClass) {
         this.fileName = fileName;
         this.departureLocation = departureLocation;
@@ -59,7 +59,7 @@ public class FindFlightList implements SearchAllFlight{
      * @throws CsvValidationException
      * @throws NumberFormatException
      */
-    public void findFlight() throws IOException, CsvValidationException, NumberFormatException {
+    public void getFlight() throws IOException, CsvValidationException, NumberFormatException {
         try (CSVReader reader = new CSVReader(new FileReader(fileName))) {
             String[] lineInArray;
             while ((lineInArray = reader.readNext()) != null) {

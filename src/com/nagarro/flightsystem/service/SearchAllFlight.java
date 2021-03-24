@@ -22,5 +22,5 @@ import java.io.IOException;
 import com.opencsv.exceptions.CsvValidationException;
 
 public interface SearchAllFlight {
-    public void findFlight() throws IOException, CsvValidationException, NumberFormatException;
+    public void getFlight() throws IOException, CsvValidationException, NumberFormatException;
 }

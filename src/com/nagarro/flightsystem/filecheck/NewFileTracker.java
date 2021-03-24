@@ -21,7 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.nagarro.flightsystem.service.impl.FindFlightList;
+import com.nagarro.flightsystem.service.impl.FindFlight;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class NewFileTracker implements Runnable {
@@ -78,11 +78,11 @@ public class NewFileTracker implements Runnable {
         if (!check) {
             for (int i = 0; i < newFilesName.size(); i++) {
                 if (!oldFilesName.contains(newFilesName.get(i))) {
-                    FindFlightList flight = new FindFlightList(
+                    FindFlight flight = new FindFlight(
                             "C:/Users/arpitgarg02/eclipse-workspace/AirFlightSystem/bin/Assignment Links/"
                                     + newFilesName.get(i),
                             departureLocation, arrivalLocation, flightDate, flightClass);
-                    flight.findFlight();
+                    flight.getFlight();
                 }
             }
             oldFilesName = newFilesName;

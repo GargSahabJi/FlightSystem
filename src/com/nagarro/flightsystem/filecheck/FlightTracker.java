@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import com.nagarro.flightsystem.model.FlightInformation;
-import com.nagarro.flightsystem.service.impl.FindFlightList;
+import com.nagarro.flightsystem.service.impl.FindFlight;
 import com.nagarro.flightsystem.sorting.FareSort;
 import com.nagarro.flightsystem.sorting.FlightDurationSort;
 import com.opencsv.exceptions.CsvValidationException;
@@ -61,11 +61,11 @@ public class FlightTracker implements Runnable {
      */
     private void getFlightData() {
         for (int i = 0; i < filesName.size(); i++) {
-            FindFlightList searchFlight = new FindFlightList(
+            FindFlight searchFlight = new FindFlight(
                     C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_AIR_FLIGHT_SYSTEM_BIN_RESOURCES + filesName.get(i),
                     departureLocation, arrivalLocation, flightDate, flightClass);
             try {
-                searchFlight.findFlight();
+                searchFlight.getFlight();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (CsvValidationException e) {
