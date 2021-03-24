@@ -1,0 +1,6 @@
+# FlightSystem
+https://github.com/GargSahabJi/FlightSystem
+- For creating the .jar using maven
+1. mvn clean
+2. mvn compile
+3. mvn package
