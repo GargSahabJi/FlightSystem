@@ -19,8 +19,9 @@ package com.nagarro.flightsystem.service;
 
 import java.io.IOException;
 
+import com.nagarro.flightsystem.model.FlightData;
 import com.opencsv.exceptions.CsvValidationException;
 
-public interface SearchAllFlight {
-    public void getFlight() throws IOException, CsvValidationException, NumberFormatException;
+public interface FlightService {
+    public void getFlight(FlightData flightForSearch) throws IOException, CsvValidationException, NumberFormatException;
 }

@@ -18,18 +18,29 @@
 package com.nagarro.flightsystem.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class FlightInformation {
+public class FlightData {
     private String flightNumber;
     private String departureLocation;
     private String arrivalLocation;
     private String validTill;
     private String flightTime;
     private float flightDuration;
-    private double fare;
+    private float fare;
     private String seatAvailability;
     private String flightClass;
-    private static ArrayList<FlightInformation> flightList = new ArrayList<>();
+    private String flieForRead;
+
+    public String getFlieForRead() {
+        return flieForRead;
+    }
+
+    public void setFlieForRead(String flieForRead) {
+        this.flieForRead = flieForRead;
+    }
+
+    private static ArrayList<FlightData> flightList = new ArrayList<>();
 
     /**
      * @param flightNumber
@@ -83,7 +94,7 @@ public class FlightInformation {
     /**
      * @param fare
      */
-    public void setFare(double fare) {
+    public void setFare(float fare) {
         this.fare = fare;
     }
 
@@ -160,14 +171,14 @@ public class FlightInformation {
     /**
      * @param flightToAdd
      */
-    public void addFlight(FlightInformation flightToAdd) {
-        flightList.add(flightToAdd);
+    public void addFlight(List<FlightData> flightToAdd) {
+        flightList.addAll(flightToAdd);
     }
 
     /**
      * @return flight list
      */
-    public ArrayList<FlightInformation> getFlightList() {
+    public ArrayList<FlightData> getFlightList() {
         return flightList;
     }
 }

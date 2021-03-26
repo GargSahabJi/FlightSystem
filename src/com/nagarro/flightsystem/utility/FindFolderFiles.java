@@ -15,7 +15,7 @@
 *
 * Description: Find the all files in the given folder
 */
-package com.nagarro.flightsystem.filecheck;
+package com.nagarro.flightsystem.utility;
 
 import java.io.File;
 import java.util.ArrayList;

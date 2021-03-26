@@ -19,12 +19,12 @@ package com.nagarro.flightsystem.sorting;
 
 import java.util.Comparator;
 
-import com.nagarro.flightsystem.model.FlightInformation;
+import com.nagarro.flightsystem.model.FlightData;
 
-public class FareSort implements Comparator<FlightInformation> {
+public class FareSort implements Comparator<FlightData> {
 
     @Override
-    public int compare(FlightInformation flight1, FlightInformation flight2) {
+    public int compare(FlightData flight1, FlightData flight2) {
         if (flight1.getFare() > flight2.getFare())
             return 1;
         else if (flight1.getFare() < flight2.getFare())

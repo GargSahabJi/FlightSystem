@@ -44,7 +44,7 @@ public class ValidationUtils {
      * @return
      */
     public boolean ContainsOnlyAlphabet(String itemName) {
-        return ((itemName != null) && (!itemName.equals("")) && (itemName.matches("^[a-zA-Z]*$"))) ? false : true;
+        return ((itemName != null) && (itemName.matches("^[a-zA-Z]*$"))) ? false : true;
     }
 
     /**

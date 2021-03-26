@@ -15,14 +15,14 @@
 *
 * Description: Used for the print list of flights
 */
-package com.nagarro.flightsystem.filecheck;
+package com.nagarro.flightsystem.utility;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import com.nagarro.flightsystem.model.FlightInformation;
-import com.nagarro.flightsystem.service.impl.FindFlight;
+import com.nagarro.flightsystem.model.FlightData;
+import com.nagarro.flightsystem.service.impl.FlightServiceImpl;
 import com.nagarro.flightsystem.sorting.FareSort;
 import com.nagarro.flightsystem.sorting.FlightDurationSort;
 import com.opencsv.exceptions.CsvValidationException;
@@ -30,7 +30,7 @@ import com.opencsv.exceptions.CsvValidationException;
 public class FlightTracker implements Runnable {
     private static final String C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_AIR_FLIGHT_SYSTEM_BIN_RESOURCES = "C:/Users/arpitgarg02/eclipse-workspace/AirFlightSystem/bin/resources/";
     private static final String NO_RECORD_FOUND = "No Record Found";
-    private static FlightInformation flight = new FlightInformation();
+    private static FlightData flight = new FlightData();
     private ArrayList<String> filesName = new ArrayList<>();
     private String departureLocation;
     private String arrivalLocation;
@@ -61,11 +61,17 @@ public class FlightTracker implements Runnable {
      */
     private void getFlightData() {
         for (int i = 0; i < filesName.size(); i++) {
-            FindFlight searchFlight = new FindFlight(
-                    C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_AIR_FLIGHT_SYSTEM_BIN_RESOURCES + filesName.get(i),
-                    departureLocation, arrivalLocation, flightDate, flightClass);
+            FlightData flightForSearch = new FlightData();
+            flightForSearch.setDepartureLocation(departureLocation);
+            flightForSearch.setArrivalLocation(arrivalLocation);
+            flightForSearch.setValidTill(flightDate);
+            flightForSearch.setFlightClass(flightClass);
+            flightForSearch.setFlieForRead(filesName.get(i));
+//            FlightServiceImpl searchFlight = new FlightServiceImpl(
+//                    C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_AIR_FLIGHT_SYSTEM_BIN_RESOURCES + filesName.get(i),
+//                    departureLocation, arrivalLocation, flightDate, flightClass);
             try {
-                searchFlight.getFlight();
+                new FlightServiceImpl().getFlight(flightForSearch);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (CsvValidationException e) {
@@ -119,7 +125,7 @@ public class FlightTracker implements Runnable {
                 "----------------------------------------------------------------------------------------------------------");
     }
 
-    public static void printFlightData(FlightInformation flightData) {
+    public static void printFlightData(FlightData flightData) {
         System.out.printf("%8s %8s %10s %15s %10s %8s %15s %7s %8s", flightData.getFlightNumber(),
                 flightData.getDepartureLoaction(), flightData.getArrivalLocation(), flightData.getValidTill(),
                 flightData.getFlightTime(), flightData.getFlightDuration(), flightData.getFare(),

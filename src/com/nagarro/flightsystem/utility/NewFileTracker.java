@@ -15,13 +15,14 @@
 *
 * Description: Track the folder after 20 second for a new file
 */
-package com.nagarro.flightsystem.filecheck;
+package com.nagarro.flightsystem.utility;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.nagarro.flightsystem.service.impl.FindFlight;
+import com.nagarro.flightsystem.model.FlightData;
+import com.nagarro.flightsystem.service.impl.FlightServiceImpl;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class NewFileTracker implements Runnable {
@@ -78,11 +79,14 @@ public class NewFileTracker implements Runnable {
         if (!check) {
             for (int i = 0; i < newFilesName.size(); i++) {
                 if (!oldFilesName.contains(newFilesName.get(i))) {
-                    FindFlight flight = new FindFlight(
-                            "C:/Users/arpitgarg02/eclipse-workspace/AirFlightSystem/bin/Assignment Links/"
-                                    + newFilesName.get(i),
-                            departureLocation, arrivalLocation, flightDate, flightClass);
-                    flight.getFlight();
+                    FlightData flightForSearch = new FlightData();
+                    flightForSearch.setFlieForRead(newFilesName.get(i));
+                    flightForSearch.setDepartureLocation(departureLocation);
+                    flightForSearch.setArrivalLocation(arrivalLocation);
+                    flightForSearch.setValidTill(flightDate);
+                    flightForSearch.setFlightClass(flightClass);
+                    new FlightServiceImpl().getFlight(flightForSearch);
+                    //flight.getFlight();
                 }
             }
             oldFilesName = newFilesName;

@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.nagarro.flightsystem.exception.InvalidStateException;
-import com.nagarro.flightsystem.filecheck.FlightTracker;
-import com.nagarro.flightsystem.filecheck.FindFolderFiles;
-import com.nagarro.flightsystem.filecheck.NewFileTracker;
+import com.nagarro.flightsystem.utility.FindFolderFiles;
+import com.nagarro.flightsystem.utility.FlightTracker;
+import com.nagarro.flightsystem.utility.NewFileTracker;
 import com.nagarro.flightsystem.utils.ValidationUtils;
 
 public class Main {
