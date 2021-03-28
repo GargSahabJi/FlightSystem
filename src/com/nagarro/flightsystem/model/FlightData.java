@@ -20,16 +20,34 @@ package com.nagarro.flightsystem.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+@Entity
 public class FlightData {
+    @Id
+    @Column(name = "Flight_Number")
     private String flightNumber;
+    @Column(name = "Departure_Loc")
     private String departureLocation;
+    @Column(name = "Arrival_Loc")
     private String arrivalLocation;
+    @Column(name = "Valid_Till")
     private String validTill;
+    @Column(name = "Flight_Time")
     private String flightTime;
+    @Column(name = "Flight_Duration", length = 10, precision = 4)
     private float flightDuration;
+    @Column(name = "Fare", length = 10, precision = 4)
     private float fare;
+    @Column(name = "Seat_Availability")
     private String seatAvailability;
+    @Column(name = "Flight_Class")
     private String flightClass;
+    @Transient
     private String flieForRead;
 
     public String getFlieForRead() {

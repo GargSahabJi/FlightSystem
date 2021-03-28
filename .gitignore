@@ -1,3 +1,4 @@
 /target/
 /.gradle/
 /.settings/
+/bin/

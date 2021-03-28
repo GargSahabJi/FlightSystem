@@ -21,7 +21,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class FindFolderFiles {
-    private static final String C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_AIR_FLIGHT_SYSTEM_BIN_RESOURCES = "C:\\Users\\arpitgarg02\\eclipse-workspace\\AirFlightSystem\\bin\\resources";
+    private static final String C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_FLIGHT_SYSTEM_BIN_RESOURCES = "C:\\Users\\arpitgarg02\\eclipse-workspace\\FlightSystem\\bin\\resources";
     private static ArrayList<String> filesName = new ArrayList<>();
 
     /**
@@ -29,7 +29,7 @@ public class FindFolderFiles {
      */
     public ArrayList<String> getAllFiles() {
         try {
-            File folder = new File(C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_AIR_FLIGHT_SYSTEM_BIN_RESOURCES);
+            File folder = new File(C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_FLIGHT_SYSTEM_BIN_RESOURCES);
             for (File file : folder.listFiles()) {
                 String name = file.getName();
                 if (!filesName.contains(name)) {

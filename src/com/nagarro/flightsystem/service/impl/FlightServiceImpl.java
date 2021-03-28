@@ -23,15 +23,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.nagarro.flightsystem.dao.impl.DatabaseConnectionImpl;
 import com.nagarro.flightsystem.model.FlightData;
 import com.nagarro.flightsystem.service.FlightService;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
 public class FlightServiceImpl implements FlightService {
-    private static final String C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_AIR_FLIGHT_SYSTEM_BIN_RESOURCES = "C:/Users/arpitgarg02/eclipse-workspace/AirFlightSystem/bin/resources/";
+    private static final String C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_FLIGHT_SYSTEM_BIN_RESOURCES = "C:/Users/arpitgarg02/eclipse-workspace/FlightSystem/bin/resources/";
     private static final String B = "B";
-    static ArrayList<String> flightData;
+    static ArrayList<String> flightInformation;
     private String fileName;
     private String departureLocation;
     private String arrivalLocaton;
@@ -47,7 +51,7 @@ public class FlightServiceImpl implements FlightService {
      */
     public void getFlight(FlightData flightForSearch)
             throws IOException, CsvValidationException, NumberFormatException {
-        this.fileName = C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_AIR_FLIGHT_SYSTEM_BIN_RESOURCES
+        this.fileName = C_USERS_ARPITGARG02_ECLIPSE_WORKSPACE_FLIGHT_SYSTEM_BIN_RESOURCES
                 + flightForSearch.getFlieForRead();
         this.departureLocation = flightForSearch.getDepartureLoaction();
         this.arrivalLocaton = flightForSearch.getArrivalLocation();
@@ -65,13 +69,22 @@ public class FlightServiceImpl implements FlightService {
                 flightInformation.setValidTill(flight[3]);
                 flightInformation.setFlightTime(flight[4]);
                 flightInformation.setFlightDuration(Float.parseFloat(flight[5]));
-                if (flightClass.equals(B)) {
-                    flightInformation.setFare(new Double(Float.parseFloat(flight[6]) * 1.4).floatValue());
-                } else {
-                    flightInformation.setFare(Float.parseFloat(flight[6]));
-                }
+//                if (flightClass.equals(B)) {
+//                    flightInformation.setFare(new Double(Float.parseFloat(flight[6]) * 1.4).floatValue());
+//                } else {
+                flightInformation.setFare(Float.parseFloat(flight[6]));
+//                }
                 flightInformation.setSeatAvailability(flight[7]);
                 flightInformation.setFlightClass(flight[8]);
+                Session session = new DatabaseConnectionImpl().getConnection();
+                Transaction tx = session.beginTransaction();
+                session.save(flightInformation);
+                tx.commit();
+//                System.out.printf("%8s %8s %10s %15s %10s %8s %15s %7s %8s", flightInformation.getFlightNumber(),
+//                        flightInformation.getDepartureLoaction(), flightInformation.getArrivalLocation(), flightInformation.getValidTill(),
+//                        flightInformation.getFlightTime(), flightInformation.getFlightDuration(), flightInformation.getFare(),
+//                        flightInformation.getSeatAvailability(), flightInformation.getFlightClass());
+//                System.out.println();
                 flightDataList.add(flightInformation);
             }
             List<FlightData> flightsForUser = flightDataList.stream()
